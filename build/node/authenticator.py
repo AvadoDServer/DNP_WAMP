@@ -47,20 +47,18 @@ class AuthenticatorSession(ApplicationSession):
       def authenticate(realm, authid, details):
          print("WAMP-Anonymous dynamic authenticator invoked: realm='{}', authid='{}'".format(realm, authid))
          pprint(details)
-         if re.match(r'tcp4:172\.33\.10\..*:.*', details["transport"]["peer"]):
-            principal = {
-              u'realm': u'dappnode_admin',
-              u'role': u'admin',
-            } 
-            return principal
-         elif re.match(r'tcp4:172\.33\.1\..*:.*', details["transport"]["peer"]):
+         if re.match(r'tcp4:172\.33\.1\..*:.*', details["transport"]["peer"]):
             principal = {
               u'realm': u'dappnode_admin',
               u'role': u'core_package',
             } 
             return principal
          else:
-            raise ApplicationError("no_such_user.authenticate.wamp.dnp.dappnode.eth", "could not authenticate session - no such principal {}".format(authid))
+	    principal = {
+              u'realm': u'dappnode_admin',
+              u'role': u'admin',
+            }
+            return principal
 
       try:
          yield self.register(authenticate, 'authenticate.wamp.dnp.dappnode.eth')
