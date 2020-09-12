@@ -23,13 +23,14 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies and Crossbar.io
 RUN apk --update upgrade \
-    && apk add libffi libressl3.1-libssl \
+    && apk add libffi libressl \
     && apk add --virtual .build-deps \
                build-base \
                snappy-dev \
                libffi-dev \
                libressl-dev \
                linux-headers \
+               snappy-dev \
     && pip install --no-cache-dir -U pip \
     && pip install --no-cache-dir crossbar \
     && apk del .build-deps
