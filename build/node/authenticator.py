@@ -49,17 +49,16 @@ class AuthenticatorSession(ApplicationSession):
          pprint(details)
          if re.match(r'tcp4:172\.33\.1\..*:.*', details["transport"]["peer"]):
             principal = {
-              u'realm': u'dappnode_admin',
-              u'role': u'core_package',
+                u'realm': u'dappnode_admin',
+                u'role': u'core_package',
             } 
             return principal
          else:
-	    principal = {
-              u'realm': u'dappnode_admin',
-              u'role': u'admin',
-            }
+            principal = {
+                u'realm': u'dappnode_admin',
+                u'role': u'core_package',
+            } 
             return principal
-
       try:
          yield self.register(authenticate, 'authenticate.wamp.dnp.dappnode.eth')
          print("WAMP-Anonymous dynamic authenticator registered!")
