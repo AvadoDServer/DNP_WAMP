@@ -22,5 +22,7 @@
   "bugs": {
     "url": "https://github.com/dappnode/DNP_WAMP/issues"
   },
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "title": "WAMP server",
+  "autoupdate": "true"
 }
